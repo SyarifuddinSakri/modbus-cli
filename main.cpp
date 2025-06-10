@@ -13,10 +13,11 @@ bool isSigned = false;
 bool rec = false;
 int reg_count = 1;
 int address;
+uint16_t port = 502;
 std::string ip;
 
 void start() {
-  modbus_t *ctx = modbus_new_tcp(ip.c_str(), 502);
+  modbus_t *ctx = modbus_new_tcp(ip.c_str(), port);
   if (modbus_connect(ctx) == -1) {
     std::cerr << "Connection Failed" << std::endl;
     modbus_free(ctx);
@@ -70,6 +71,7 @@ int main(int argc, char **argv) {
   app.add_option("ip", ip, "IP address to connect to")->required();
   app.add_option("address", address, "Modbus address to read")->required();
   app.add_option("-c, --count", reg_count, "Register count to read");
+	app.add_option("-p, --port", port, "Port number for the socket connection");
   app.add_flag("-d, --double", is32, "Set reading to 32 bit value")
       ->take_last();
   app.add_flag("-s, --signed", isSigned, "Set reading to signed value")
