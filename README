@@ -1,0 +1,5 @@
+Desc :
+To run modbus transaction from CLI. This tool used to quickly retrieve register info from a device that supports ModbusTCP from CLI.
+
+Prerequisite :
+sudo apt install libmodbus-dev libcli11-dev makefile
